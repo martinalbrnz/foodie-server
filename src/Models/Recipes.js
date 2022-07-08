@@ -9,6 +9,7 @@ const recipeSchema = new Schema({
   glutenFree: { type: Boolean, required: true },
   image: { type: String },
   ingredients: [{
+    _id: false,
     ingredient: { type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient' },
     amount: { type: String, required: true },
     unit: { type: String, default: 'g', enum: ['g', 'unit', 'ml'] },
