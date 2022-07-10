@@ -17,6 +17,6 @@ const recipeSchema = new Schema({
   utensils: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Utensil' }],
   instructions: [{ type: String }],
   estimatedTime: { type: Number },
-});
+}, { timestamps: true });
 
-export default mongoose.Schema('Recipe', recipeSchema);
+export default mongoose.model('Recipe', recipeSchema);

@@ -11,6 +11,6 @@ const userSchema = new Schema({
   favoriteRecipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }],
   likesIngredient: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient' }],
   hatesIngredient: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient' }],
-});
+}, { timestamps: true });
 
 export default mongoose.model('User', userSchema);
