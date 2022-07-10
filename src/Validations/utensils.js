@@ -3,7 +3,7 @@ import Joi from 'joi';
 const UtensilCreation = (req, res, next) => {
   const utensilSchema = Joi.object({
     name: Joi.string().required(),
-    image: Joi.string(),
+    image: Joi.string().allow('').allow(null),
   });
   const validation = utensilSchema.validate(req.body);
   if (validation.error) {
@@ -20,7 +20,7 @@ const UtensilCreation = (req, res, next) => {
 const UtensilUpdate = (req, res, next) => {
   const utensilSchema = Joi.object({
     name: Joi.string().required(),
-    image: Joi.string(),
+    image: Joi.string().allow('').allow(null),
   });
   const validation = utensilSchema.validate(req.body);
   if (validation.error) {

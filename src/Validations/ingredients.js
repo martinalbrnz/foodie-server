@@ -4,22 +4,20 @@ const IngredientCreation = (req, res, next) => {
   const ingredientSchema = Joi.object({
     name: Joi
       .string()
-      .min(1)
-      .alphanum()
       .messages({
         'string.empty': 'name is a required field',
       })
       .required(),
     nutritionalValues: Joi.object({
-      calories: Joi.number().integer(),
-      proteins: Joi.number().integer(),
-      carbs: Joi.number().integer(),
-      fats: Joi.number().integer(),
+      calories: Joi.number(),
+      proteins: Joi.number(),
+      carbs: Joi.number(),
+      fats: Joi.number(),
     }),
     isVegetarian: Joi.bool().required(),
     isVegan: Joi.bool().required(),
     glutenFree: Joi.bool().required(),
-    image: Joi.string().optional(),
+    image: Joi.string().optional().allow('').allow(null),
   });
   const validation = ingredientSchema.validate(req.body);
   if (validation.error) {
@@ -37,20 +35,19 @@ const IngredientUpdate = (req, res, next) => {
   const ingredientSchema = Joi.object({
     name: Joi
       .string()
-      .alphanum()
       .messages({
         'string.empty': 'name is a required field',
       }),
     nutritionalValues: Joi.object({
-      calories: Joi.number().integer(),
-      proteins: Joi.number().integer(),
-      carbs: Joi.number().integer(),
-      fats: Joi.number().integer(),
+      calories: Joi.number(),
+      proteins: Joi.number(),
+      carbs: Joi.number(),
+      fats: Joi.number(),
     }),
     isVegetarian: Joi.bool(),
     isVegan: Joi.bool(),
     glutenFree: Joi.bool(),
-    image: Joi.string().optional(),
+    image: Joi.string().optional().allow('').allow(null),
   });
   const validation = ingredientSchema.validate(req.body);
   if (validation.error) {

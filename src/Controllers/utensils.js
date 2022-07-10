@@ -44,7 +44,7 @@ const getUtensilById = async (req, res) => {
 
     return res.status(200)
       .json({
-        message: `Utensil sith id: ${id}`,
+        message: `Utensil with id: ${id}`,
         data: utensil,
         error: false,
       });
