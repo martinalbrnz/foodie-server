@@ -12,6 +12,7 @@ const ingredientSchema = new Schema({
     fats: { type: Number },
   }],
   isVegetarian: { type: Boolean, required: true },
+  isVegan: { type: Boolean, required: true },
   glutenFree: { type: Boolean, required: true },
   image: { type: String },
 });
