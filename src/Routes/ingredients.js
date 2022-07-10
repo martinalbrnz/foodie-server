@@ -7,6 +7,6 @@ router
   .get('/', ingredientControllers.getAllIngredients)
   .get('/:id', ingredientControllers.getIngredientById)
   .post('/', ingredientControllers.createIngredient)
-  .put('/', ingredientControllers.editIngredient);
+  .put('/:id', ingredientControllers.editIngredient);
 
 export default router;

@@ -6,14 +6,14 @@ const getAllRecipes = async (req, res) => {
       .populate('ingredients.ingredient')
       .populate('utensils');
 
-    res.status(200)
+    return res.status(200)
       .json({
         message: 'All recipes',
         data: allRecipes,
         error: false,
       });
   } catch (error) {
-    res.status(400)
+    return res.status(400)
       .json({
         message: 'An error has occurred',
         data: error,
@@ -41,7 +41,7 @@ const getFilterRecipes = async (req, res) => {
       .populate('utensils');
 
     if (!filterRecipes) {
-      res.status(404)
+      return res.status(404)
         .json({
           message: 'Recipes not found',
           data: {},
@@ -49,14 +49,14 @@ const getFilterRecipes = async (req, res) => {
         });
     }
 
-    res.status(200)
+    return res.status(200)
       .json({
         message: 'Recipes with filters:',
         data: filterRecipes,
         error: false,
       });
   } catch (error) {
-    res.status(400)
+    return res.status(400)
       .json({
         message: 'An error has occurred',
         data: error,
@@ -69,7 +69,7 @@ const getRecipeById = async (req, res) => {
   const { id } = req.params;
   try {
     if (!id) {
-      res.status(400)
+      return res.status(400)
         .json({
           message: 'Please provide an ID',
           data: {},
@@ -82,7 +82,7 @@ const getRecipeById = async (req, res) => {
       .populate('utensils');
 
     if (!recipe) {
-      res.status(404)
+      return res.status(404)
         .json({
           message: 'Recipe not found',
           data: {},
@@ -90,14 +90,14 @@ const getRecipeById = async (req, res) => {
         });
     }
 
-    res.status(200)
+    return res.status(200)
       .json({
         message: `Recipe with id: ${id}`,
         data: recipe,
         error: false,
       });
   } catch (error) {
-    res.status(400)
+    return res.status(400)
       .json({
         message: 'An error has occurred',
         data: error,
@@ -111,14 +111,14 @@ const createRecipe = async (req, res) => {
     const recipe = new Recipe(req.body);
     const createdRecipe = await recipe.save();
 
-    res.status(201)
+    return res.status(201)
       .json({
         message: 'Recipe created',
         data: createdRecipe,
         error: false,
       });
   } catch (error) {
-    res.status(400)
+    return res.status(400)
       .json({
         message: 'An error has occurred',
         data: error,
@@ -131,7 +131,7 @@ const editRecipe = async (req, res) => {
   const { id } = req.params;
   try {
     if (!id) {
-      res.status(400)
+      return res.status(400)
         .json({
           message: 'Please provide an ID',
           data: {},
@@ -141,7 +141,7 @@ const editRecipe = async (req, res) => {
     const updatedRecipe = await Recipe.findByIdAndUpdate(id, req.body, { new: true });
 
     if (!updatedRecipe) {
-      res.status(404)
+      return res.status(404)
         .json({
           message: 'Recipe not found',
           data: {},
@@ -149,14 +149,14 @@ const editRecipe = async (req, res) => {
         });
     }
 
-    res.status(200)
+    return res.status(200)
       .json({
         message: 'Recipe updated',
         data: updatedRecipe,
         error: false,
       });
   } catch (error) {
-    res.status(400)
+    return res.status(400)
       .json({
         message: 'An error has occurred',
         data: error,
