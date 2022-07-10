@@ -6,9 +6,9 @@ import utensils from './utensils';
 
 const router = express.Router();
 
-router.use('/', ingredients);
-router.use('/', recipes);
-router.use('/', user);
-router.use('/', utensils);
+router.use('/ingredients', ingredients);
+router.use('/recipes', recipes);
+router.use('/user', user);
+router.use('/utensils', utensils);
 
 export default router;

@@ -14,7 +14,7 @@ const recipeSchema = new Schema({
     amount: { type: String, required: true },
     unit: { type: String, default: 'g', enum: ['g', 'unit', 'ml'] },
   }],
-  utensils: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Utensils' }],
+  utensils: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Utensil' }],
   instructions: [{ type: String }],
   estimatedTime: { type: Number },
 });
