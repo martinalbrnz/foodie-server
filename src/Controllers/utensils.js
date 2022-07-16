@@ -20,8 +20,8 @@ const getAllUtensils = async (req, res) => {
 };
 
 const getUtensilById = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     if (!id) {
       return res.status(400)
         .json({
@@ -80,8 +80,8 @@ const createUtensil = async (req, res) => {
 };
 
 const editUtensil = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     if (!id) {
       return res.status(400)
         .json({

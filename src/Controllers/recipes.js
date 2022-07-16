@@ -23,10 +23,10 @@ const getAllRecipes = async (req, res) => {
 };
 
 const getFilterRecipes = async (req, res) => {
-  const {
-    name = '', vegetarian, vegan, glutenFree, ingredients, utensils, estimatedTime,
-  } = req.body;
   try {
+    const {
+      name = '', vegetarian, vegan, glutenFree, ingredients, utensils, estimatedTime,
+    } = req.body;
     const filterRecipes = await Recipe
       .find({
         name: { $regex: new RegExp(name, 'i') },
@@ -66,8 +66,8 @@ const getFilterRecipes = async (req, res) => {
 };
 
 const getRecipeById = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     if (!id) {
       return res.status(400)
         .json({
@@ -128,8 +128,8 @@ const createRecipe = async (req, res) => {
 };
 
 const editRecipe = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     if (!id) {
       return res.status(400)
         .json({

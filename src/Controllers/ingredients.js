@@ -20,8 +20,8 @@ const getAllIngredients = async (req, res) => {
 };
 
 const getIngredientById = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     if (!id) {
       return res.status(400).json({
         message: 'Please provide an ID',
@@ -79,8 +79,8 @@ const createIngredient = async (req, res) => {
 };
 
 const editIngredient = async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     if (!id) {
       return res.status(400)
         .json({
