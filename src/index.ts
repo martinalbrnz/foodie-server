@@ -1,11 +1,12 @@
 import dotenv from 'dotenv'
 import express, { Request, Response } from 'express'
 import routes from './routes'
+import './services/db'
 
 const app = express()
 dotenv.config()
 
-const PORT = process.env.PORT
+const { PORT } = process.env
 
 app.use(express.json())
 app.use(routes)
