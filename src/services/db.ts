@@ -1,7 +1,6 @@
 import dotenv from 'dotenv'
 import { connect } from 'mongoose'
-
-(async function connectToDB() {
+;(async function connectToDB() {
   dotenv.config()
 
   await connect(process.env.DATABASE_URL!)
