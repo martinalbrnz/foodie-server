@@ -1,5 +1,5 @@
-import express, { Router } from 'express'
+import express from 'express'
+import usersRouter from './users'
 
-const router: Router = express.Router()
-
-export default router
+export default express.Router()
+	.use('/users', usersRouter)
