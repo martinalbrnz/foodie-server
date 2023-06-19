@@ -11,8 +11,6 @@ export interface PaginationData {
   total: number
 }
 
-export interface ErrorResponse<T> {
-  msg: string
-  data: T
-  error: boolean
+export interface ErrorResponse extends Error {
+  status: number
 }
