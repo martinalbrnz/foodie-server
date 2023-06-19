@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from "express";
-import StatusCode from "../constants/status";
-import { verifyToken } from "../services/jwt";
+import { NextFunction, Request, Response } from "express"
+import StatusCode from "../constants/status"
+import { verifyToken } from "../services/jwt"
 
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
 	try {
