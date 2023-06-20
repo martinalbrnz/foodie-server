@@ -10,18 +10,19 @@ export const createUser = async (req: Request, res: Response) => {
     const pass = hashSync(password, salt)
     const newUser = await new User({ email, password: pass, name, username }).save()
     if (newUser.errors) {
-      return res.status(400).json({
+      return res.status(StatusCode.BAD_REQUEST).json({
         data: newUser.errors,
         error: true
       })
     } else {
-      return res.status(203).json({
+      return res.status(StatusCode.CREATED).json({
         data: newUser,
         error: false
       })
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    return res.status(500).json({
+    return res.status(StatusCode.INTERNAL_SERVER_ERROR).json({
       data: error.message,
       error: true,
     })
@@ -37,6 +38,7 @@ export const getAll = async (req: Request, res: Response) => {
         data: allUsers,
         error: false
       })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return res
       .status(StatusCode.INTERNAL_SERVER_ERROR)
@@ -51,18 +53,19 @@ export const getUserById = async (req: Request, res: Response) => {
   try {
     const user = await User.findById(req.params.id)
     if (user) {
-      return res.status(200).json({
+      return res.status(StatusCode.OK).json({
         data: user,
         error: false,
       })
     } else {
-      return res.status(404).json({
+      return res.status(StatusCode.NOT_FOUND).json({
         data: null,
         error: true,
       })
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    return res.status(500).json({
+    return res.status(StatusCode.INTERNAL_SERVER_ERROR).json({
       data: error.message,
       error: true,
     })
