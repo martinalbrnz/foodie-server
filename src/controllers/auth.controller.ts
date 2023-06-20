@@ -11,10 +11,18 @@ export const login = async (req: Request, res: Response) => {
     const { email, password } = req.body
     const user = await User.findOne({ $or: [{ email: email }, { username: email }] }).lean()
 
+    if (user && !user.is_active) {
+      return res
+        .status(StatusCode.UNAUTHORIZED)
+        .json({ data: 'User is inactive', error: true })
+    }
+
     if (user && user.password && compareSync(password, user.password)) {
       delete user.password
+
       const ATO = generateToken({ role: user.role, _id: user._id }, { expiresIn: ATO_DURATION })
       const RTO = generateToken({ refresh: true, _id: user._id }, { expiresIn: RTO_DURATION })
+
       return res
         .status(StatusCode.OK)
         .json({

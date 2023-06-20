@@ -1,5 +1,13 @@
 import dotenv from 'dotenv'
-import { DecodeOptions, Secret, SignOptions, VerifyOptions, decode, sign, verify } from 'jsonwebtoken'
+import {
+	DecodeOptions,
+	Secret,
+	SignOptions,
+	VerifyOptions,
+	decode,
+	sign,
+	verify
+} from 'jsonwebtoken'
 
 dotenv.config()
 

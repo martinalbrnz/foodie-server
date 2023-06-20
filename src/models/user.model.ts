@@ -3,10 +3,12 @@ import mongoose, { Schema } from 'mongoose'
 const UserSchema = new Schema({
   email: {
     type: String,
+    lowercase: true,
     unique: true
   },
   username: {
     type: String,
+    lowercase: true,
     require: false
   },
   name: {
@@ -22,7 +24,7 @@ const UserSchema = new Schema({
     require: true,
     default: 'user'
   },
-  isActive: {
+  is_active: {
     type: String,
     require: true,
     default: true
