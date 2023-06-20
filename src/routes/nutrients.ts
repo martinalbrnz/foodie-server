@@ -6,6 +6,6 @@ import { createValidation, updateValidation } from "../validations/nutrient.vali
 const nutrientsRouter: Router = express.Router()
 	.get('/', authMiddleware, getAll)
 	.post('/', authMiddleware, createValidation, create)
-	.patch('/', authMiddleware, updateValidation, update)
+	.patch('/:id', authMiddleware, updateValidation, update)
 
 export default nutrientsRouter
