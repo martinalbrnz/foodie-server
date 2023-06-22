@@ -1,10 +1,10 @@
 import { Request, Response } from "express"
 import StatusCode from "../constants/status"
-import Ingredient from '../models/ingredient.model'
+import Recipe from '../models/recipe.model'
 
 export const create = async (req: Request, res: Response) => {
 	try {
-		const data = await new Ingredient(req.body).save()
+		const data = await new Recipe(req.body).save()
 
 		if (data.errors) {
 			return res.status(StatusCode.BAD_REQUEST).json({
@@ -30,7 +30,7 @@ export const create = async (req: Request, res: Response) => {
 
 export const getById = async (req: Request, res: Response) => {
 	try {
-		const data = await Ingredient.findById(req.params.id).lean()
+		const data = await Recipe.findById(req.params.id).lean()
 
 		if (!data) {
 			return res.status(StatusCode.NOT_FOUND).json({
@@ -56,7 +56,7 @@ export const getById = async (req: Request, res: Response) => {
 
 export const getAll = async (req: Request, res: Response) => {
 	try {
-		const data = await Ingredient.find({}).lean()
+		const data = await Recipe.find({}).lean()
 
 		if (!data) {
 			return res.status(StatusCode.NOT_FOUND).json({
@@ -91,13 +91,13 @@ export const update = async (req: Request, res: Response) => {
 				})
 		}
 
-		const data = Ingredient.findByIdAndUpdate(req.params.id, req.body)
+		const data = Recipe.findByIdAndUpdate(req.params.id, req.body)
 
 		if (!data) {
 			return res
 				.status(StatusCode.NOT_FOUND)
 				.json({
-					data: `Ingredient with id ${req.params.id} not found`,
+					data: `Recipe with id ${req.params.id} not found`,
 					error: true
 				})
 		}
