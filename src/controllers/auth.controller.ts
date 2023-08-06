@@ -10,6 +10,11 @@ export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body
     const user = await User.findOne({ $or: [{ email: email }, { username: email }] }).lean()
+    if (!user) {
+      return res
+        .status(StatusCode.NOT_FOUND)
+        .json({ data: 'User does not exist', error: true })
+    }
 
     if (user && !user.is_active) {
       return res

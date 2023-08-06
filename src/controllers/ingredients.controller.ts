@@ -30,7 +30,10 @@ export const create = async (req: Request, res: Response) => {
 
 export const getById = async (req: Request, res: Response) => {
 	try {
-		const data = await Ingredient.findById(req.params.id).lean()
+		const data = await Ingredient
+			.findById(req.params.id)
+			.populate('nutritional_info.nutrient')
+			.lean()
 
 		if (!data) {
 			return res.status(StatusCode.NOT_FOUND).json({
@@ -56,7 +59,10 @@ export const getById = async (req: Request, res: Response) => {
 
 export const getAll = async (req: Request, res: Response) => {
 	try {
-		const data = await Ingredient.find({}).lean()
+		const data = await Ingredient
+			.find({})
+			.populate('nutritional_info.nutrient')
+			.lean()
 
 		if (!data) {
 			return res.status(StatusCode.NOT_FOUND).json({

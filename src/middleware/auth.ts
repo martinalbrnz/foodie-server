@@ -19,6 +19,11 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
 
 		if (payload && payload._id) {
 			const currentUser = await User.findById(payload._id).lean()
+			if (!currentUser) {
+				return res
+					.status(StatusCode.NOT_FOUND)
+					.json({ data: 'User does not exist', error: true })
+			}
 			if (!currentUser?.is_active) {
 				return res
 					.status(StatusCode.UNAUTHORIZED)
